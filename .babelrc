@@ -8,7 +8,11 @@
     "transform-class-properties",
     "transform-object-rest-spread"
   ],
-  "ignore": [
-    "**/*.spec.js"
-  ]
+  "env": {
+    "production": {
+      "ignore": [
+        "**/*.spec.js"
+      ]
+    }
+  }
 }
