@@ -8,7 +8,6 @@ import 'antd/lib/icon/style';
 import getFlatMenuKeys from './utils/getFlatMenuKeys';
 import getMeunMatchKeys from './utils/getMeunMatchKeys';
 import urlToList from './utils/urlToList';
-import './Sider.scss';
 
 const { SubMenu } = Menu;
 
@@ -17,6 +16,7 @@ const propTypes = {
   className: PropTypes.string,
   appName: PropTypes.string,
   appLogo: PropTypes.string,
+  appBaseUrl: PropTypes.string,
   menuData: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     path: PropTypes.string,
@@ -31,6 +31,7 @@ const defaultProps = {
   className: '',
   appName: '',
   appLogo: '',
+  appBaseUrl: '/',
   menuData: [],
   pathname: '/',
 };
@@ -87,7 +88,7 @@ class Sider extends Component {
   )
 
   renderSiderHeader = () => (
-    <a href="/">
+    <a href={this.props.appBaseUrl}>
       <div className={`${this.props.prefixCls}-header`}>
         <img
           className={`${this.props.prefixCls}-logo`}
