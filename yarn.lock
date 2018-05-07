@@ -3828,14 +3828,14 @@ rc-hammerjs@~0.6.0:
     prop-types "^15.5.9"
 
 rc-input-number@~4.0.0:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/rc-input-number/-/rc-input-number-4.0.6.tgz#078af3b3be0fc8a36a05072169d6415d4a631ab9"
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/rc-input-number/-/rc-input-number-4.0.7.tgz#3d231518decf443dcc6152e4370a46f2b705f901"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.0"
     is-negative-zero "^2.0.0"
     prop-types "^15.5.7"
-    rmc-feedback "^1.0.0"
+    rmc-feedback "^2.0.0"
 
 rc-menu@^7.0.2, rc-menu@~7.0.2:
   version "7.0.3"
@@ -4330,9 +4330,9 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1:
   dependencies:
     glob "^7.0.5"
 
-rmc-feedback@^1.0.0:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/rmc-feedback/-/rmc-feedback-1.0.4.tgz#fba066059ae2057ac0e0b53ea7ce982c8f4f7f19"
+rmc-feedback@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rmc-feedback/-/rmc-feedback-2.0.0.tgz#cbc6cb3ae63c7a635eef0e25e4fbaf5ac366eeaa"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
