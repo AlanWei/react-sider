@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run clean && cross-env NODE_ENV=production babel src --out-dir lib && npm run build:css",
-    "build:css": "cross-env sass src/Sider.scss lib/sider.css --no-source-map",
+    "build:css": "cross-env sass src/Sider.scss lib/index.css --no-source-map",
     "test": "jest --coverage",
     "lint": "cross-env eslint --ext .js --ext .jsx src",
     "clean": "rm -rf lib",

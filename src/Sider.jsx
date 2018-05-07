@@ -14,9 +14,11 @@ const { SubMenu } = Menu;
 const propTypes = {
   prefixCls: PropTypes.string,
   className: PropTypes.string,
+  style: PropTypes.object,
   appName: PropTypes.string,
   appLogo: PropTypes.string,
   appBaseUrl: PropTypes.string,
+  width: PropTypes.number,
   menuData: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     path: PropTypes.string,
@@ -29,9 +31,11 @@ const propTypes = {
 const defaultProps = {
   prefixCls: 'react-sider',
   className: '',
+  style: {},
   appName: '',
   appLogo: '',
   appBaseUrl: '/',
+  width: 256,
   menuData: [],
   pathname: '/',
 };
@@ -116,11 +120,20 @@ class Sider extends Component {
   )
 
   render() {
-    const { prefixCls, className } = this.props;
+    const {
+      prefixCls,
+      className,
+      style,
+      width,
+    } = this.props;
     const classes = `${prefixCls} ${className}`;
+    const styles = {
+      ...style,
+      width,
+    };
 
     return (
-      <div className={classes}>
+      <div className={classes} style={styles}>
         {this.renderSiderHeader()}
         <div className={`${prefixCls}-body`}>
           {this.renderSiderBody()}
