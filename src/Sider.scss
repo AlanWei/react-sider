@@ -1,0 +1,27 @@
+.react-sider {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, .15);
+  &-header {
+    display: flex;
+    align-items: center;
+    background: #002140;
+    height: 64px;
+    padding-left: 24px;
+  }
+  &-body {
+    flex: 1;
+    background: #001529;
+  }
+  &-logo {
+    height: 48px;
+    width: 48px;
+  }
+  &-appName {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
