@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import map from 'lodash/map';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
@@ -82,17 +83,17 @@ class Sider extends Component {
       }
       return (
         <Menu.Item key={item.path}>
-          <a href={item.path}>
+          <Link to={item.path} href={item.path}>
             <Icon type={item.icon} />
             <span>{item.name}</span>
-          </a>
+          </Link>
         </Menu.Item>
       );
     })
   )
 
   renderSiderHeader = () => (
-    <a href={this.props.appBaseUrl}>
+    <Link to={this.props.appBaseUrl} href={this.props.appBaseUrl}>
       <div className={`${this.props.prefixCls}-header`}>
         <img
           className={`${this.props.prefixCls}-logo`}
@@ -103,7 +104,7 @@ class Sider extends Component {
           {this.props.appName}
         </div>
       </div>
-    </a>
+    </Link>
   )
 
   renderSiderBody = () => (

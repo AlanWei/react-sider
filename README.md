@@ -10,7 +10,7 @@ Automatically match Menu `openKeys` & `selectKeys` with current page `pathname`.
 ## Installation
 
 ```bash
-yarn add react-sider react antd lodash
+yarn add react-sider react react-router-dom antd lodash
 ```
 
 ## Preview
@@ -89,3 +89,6 @@ const Sider = () => (
 
 export default Sider;
 ```
+
+## Notes
+1. Remember to config `less-loader` within your application building process since `react-sider` import `antd` components styles.
