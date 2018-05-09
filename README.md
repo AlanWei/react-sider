@@ -43,38 +43,38 @@ const menuData = [{
   // MenuItem icon (antd icon)
   icon: 'dashboard',
   // MenuItem relative path
-  path: '/dashboard',
+  path: 'dashboard',
   // SubMenu
   children: [{
     name: 'Analysis',
-    path: '/dashboard/analysis',
+    path: 'analysis',
     children: [{
       name: 'Real-time',
-      path: '/dashboard/analysis/realtime',
+      path: 'realtime',
     }, {
       name: 'Offline',
-      path: '/dashboard/analysis/offline',
+      path: 'offline',
     }],
   },
   {
     name: 'Monitor',
-    path: '/dashboard/monitor',
+    path: 'monitor',
   },
   {
     name: 'Workplace',
-    path: '/dashboard/workplace',
+    path: 'workplace',
   }],
 }, {
   name: 'Marketing',
   icon: 'table',
-  path: '/marketing',
+  path: 'marketing',
 }, {
   name: 'Settings',
   icon: 'setting',
-  path: '/settings',
+  path: 'settings',
   children: [{
     name: 'Users Management',
-    path: '/settings/users',
+    path: 'users',
   }],
 }];
 
@@ -91,4 +91,5 @@ export default Sider;
 ```
 
 ## Notes
-1. Remember to config `less-loader` within your application building process since `react-sider` import `antd` components styles.
+* `react-sider` will format nested menu path with `/` based on `menuData` structure.
+* Remember to config `less-loader` within your application building process since `react-sider` imports `antd` components styles.

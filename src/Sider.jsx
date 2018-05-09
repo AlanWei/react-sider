@@ -6,6 +6,7 @@ import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 import 'antd/lib/menu/style';
 import 'antd/lib/icon/style';
+import formatMenuPath from './utils/formatMenuPath';
 import getFlatMenuKeys from './utils/getFlatMenuKeys';
 import getMeunMatchKeys from './utils/getMeunMatchKeys';
 import urlToList from './utils/urlToList';
@@ -48,7 +49,8 @@ const getOpenKeys = (pathname, flatMenuKeys) => (
 class Sider extends Component {
   constructor(props) {
     super(props);
-    this.flatMenuKeys = getFlatMenuKeys(this.props.menuData);
+    this.fullPathMenuData = formatMenuPath(this.props.menuData);
+    this.flatMenuKeys = getFlatMenuKeys(this.fullPathMenuData);
   }
 
   state = {
@@ -116,7 +118,7 @@ class Sider extends Component {
       selectedKeys={this.state.openKeys}
       onOpenChange={this.handleOpenChange}
     >
-      {this.renderMenu(this.props.menuData)}
+      {this.renderMenu(this.fullPathMenuData)}
     </Menu>
   )
 
@@ -127,6 +129,7 @@ class Sider extends Component {
       style,
       width,
     } = this.props;
+
     const classes = `${prefixCls} ${className}`;
     const styles = {
       ...style,
