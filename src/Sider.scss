@@ -1,7 +1,12 @@
 .react-sider {
   z-index: 1;
   display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
   flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   width: 256px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, .15);
   &-header {
@@ -13,6 +18,9 @@
   }
   &-body {
     flex: 1;
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     background: #001529;
   }
   &-logo {
