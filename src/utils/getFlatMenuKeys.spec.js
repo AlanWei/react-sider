@@ -1,5 +1,9 @@
 import getFlatMenuKeys from './getFlatMenuKeys';
 
+test('empty menu', () => {
+  expect(getFlatMenuKeys([])).toEqual([]);
+});
+
 test('flat menu', () => {
   const simpleMenu = [{
     path: '/dashboard',

@@ -8,7 +8,8 @@ Lightweight [Ant Design Pro](https://pro.ant.design/) like `<Sider />` component
 ## Features
 * Zero work on CSS.
 * Minimum configuration and 100% data driven.
-* Native nested menu and page pathname support.
+* Easy integration with any React app architectures. Only depends on react, react-router-dom, antd & lodash.
+* Native nested menu and pathname support.
 * Automatical menu `openKeys` & `selectKeys` match based on current page `pathname`.
 
 ## Installation
@@ -38,8 +39,8 @@ yarn add react-sider react react-router-dom antd lodash
 
 ```javascript
 import ReactSider from 'react-sider';
-import logo from 'assets/logo.svg';
 import 'react-sider/lib/index.css';
+import logo from 'assets/logo.svg';
 
 const menuData = [{
   // MenuItem name
@@ -95,5 +96,5 @@ export default Sider;
 ```
 
 ## Notes
-* `react-sider` will format nested menu path with `/` based on `menuData` structure.
+* `react-sider` will automatically format nested menu path with `/` based on `menuData` structure.
 * Remember to config `less-loader` within your application building process since `react-sider` directly imports `antd` components styles.

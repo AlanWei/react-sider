@@ -11,6 +11,10 @@ const flatMenuKeys = [
   '/form',
 ];
 
+test('empty path', () => {
+  expect(getMeunMatchKeys(flatMenuKeys, urlToList(''))).toEqual([]);
+});
+
 test('simple path', () => {
   expect(getMeunMatchKeys(flatMenuKeys, urlToList('/dashboard'))).toEqual(['/dashboard']);
 });

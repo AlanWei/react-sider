@@ -4,6 +4,10 @@ test('undefined path', () => {
   expect(urlToList(undefined)).toEqual([]);
 });
 
+test('empty path', () => {
+  expect(urlToList('')).toEqual([]);
+});
+
 test('simple path', () => {
   expect(urlToList('/dashboard')).toEqual(['/dashboard']);
 });
