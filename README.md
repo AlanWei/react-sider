@@ -5,7 +5,11 @@
 
 Lightweight [Ant Design Pro](https://pro.ant.design/) like `<Sider />` component integrated with [Ant Design Menu](http://ant.design/components/menu/).
 
-Automatically match Menu `openKeys` & `selectKeys` with current page `pathname`.
+## Features
+* Zero work on CSS.
+* Minimum configuration and 100% data driven.
+* Native nested menu and page pathname support.
+* Automatical menu `openKeys` & `selectKeys` match based on current page `pathname`.
 
 ## Installation
 
@@ -92,4 +96,4 @@ export default Sider;
 
 ## Notes
 * `react-sider` will format nested menu path with `/` based on `menuData` structure.
-* Remember to config `less-loader` within your application building process since `react-sider` imports `antd` components styles.
+* Remember to config `less-loader` within your application building process since `react-sider` directly imports `antd` components styles.
