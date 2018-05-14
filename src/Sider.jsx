@@ -47,6 +47,15 @@ const getOpenKeys = (pathname, flatMenuKeys) => (
 );
 
 class Sider extends Component {
+  static getDerivedStateFromProps(nextProps) {
+    return {
+      openKeys: getOpenKeys(
+        nextProps.pathname,
+        getFlatMenuKeys(formatMenuPath(nextProps.menuData)),
+      ),
+    };
+  }
+
   constructor(props) {
     super(props);
     this.fullPathMenuData = formatMenuPath(this.props.menuData);
