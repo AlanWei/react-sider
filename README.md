@@ -8,14 +8,14 @@ Lightweight [Ant Design Pro](https://pro.ant.design/) like `<Sider />` component
 ## Features
 * Zero work on CSS.
 * Minimum configuration and 100% data driven.
-* Easy integration with any React app architectures. Only depends on react, react-router-dom, antd & lodash.
+* Easy integration with any React app architectures. Only depends on `react`, `react-router-dom`, `lodash` & `antd`.
 * Native nested menu and pathname support.
 * Automatical menu `openKeys` & `selectKeys` match based on current page `pathname`.
 
 ## Installation
 
 ```bash
-yarn add react-sider react react-router-dom antd lodash
+yarn add react-sider react react-router-dom lodash antd
 ```
 
 ## Preview
@@ -88,6 +88,7 @@ const Sider = () => (
     appName="React App Pro"
     appLogo={logo}
     menuData={menuData}
+    // better to sync pathname with the router in your application
     pathname={this.props.location.pathname}
   />
 )
