@@ -3,6 +3,8 @@
 [![npm v](https://img.shields.io/npm/v/react-sider.svg)](https://www.npmjs.com/package/react-sider)
 [![npm dm](https://img.shields.io/npm/dm/react-sider.svg)](https://www.npmjs.com/package/react-sider)
 
+Inspired by [Ant Design Pro](https://pro.ant.design/).
+
 Lightweight [Ant Design Pro](https://pro.ant.design/) like `<Sider />` component integrated with [Ant Design Menu](http://ant.design/components/menu/).
 
 ## Features
@@ -24,16 +26,25 @@ yarn add react-sider react react-router-dom lodash antd
 
 ## Usage
 
-| Property   | Description                 | Type                                                           | Default |
-| ---------- | --------------------------- | -------------------------------------------------------------- | ------- |
-| className  | className of container      | string                                                         | ''      |
-| style      | style of container          | object                                                         | { }     |
-| appName    | name of application         | string                                                         | ''      |
-| appLogo    | img src of application logo | string                                                         | ''      |
-| appBaseUrl | href of sider header        | string                                                         | '/'     |
-| width      | sider container width       | number                                                         | 256     |
-| menuData   | data of sider menu          | [{ name: string, path: string, icon: string, children: [ ] ]}] | [ ]     |
-| pathname   | current page pathname       | string                                                         | '/'     |
+### Sider
+| Property   | Description                 | Type              | Default |
+| ---------- | --------------------------- | ----------------- | ------- |
+| className  | className of container      | string            | ''      |
+| style      | style of container          | object            | { }     |
+| appName    | name of application         | string            | ''      |
+| appLogo    | img src of application logo | string            | ''      |
+| appBaseUrl | href of sider header        | string            | '/'     |
+| width      | sider container width       | number            | 256     |
+| menuData   | data of sider menu          | arrayOf(MenuItem) | [ ]     |
+| pathname   | current page pathname       | string            | '/'     |
+
+### MenuItem
+| Property | Description                                    | Type              | Default |
+| -------- | ---------------------------------------------- | ----------------- | ------- |
+| name     | menu item name in text                         | string            | -       |
+| path     | menu item path (see below example for details) | string            | -       |
+| icon     | menu item antd icon                            | string            | -       |
+| children | sub menu items                                 | arrayOf(MenuItem) | -       |
 
 ## Example
 
