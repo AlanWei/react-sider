@@ -1,6 +1,6 @@
 {
   "name": "react-sider",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Flexible Sider component integrated with Ant Design Menu.",
   "main": "lib/index.js",
   "scripts": {
