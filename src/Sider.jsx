@@ -47,31 +47,29 @@ const getOpenKeys = (pathname, flatMenuKeys) => (
 );
 
 class Sider extends Component {
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      openKeys: getOpenKeys(
-        nextProps.pathname,
-        getFlatMenuKeys(formatMenuPath(nextProps.menuData)),
-      ),
-    };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.pathname !== prevState.pathname) {
+      return {
+        pathname: nextProps.pathname,
+        openKeys: getOpenKeys(
+          nextProps.pathname,
+          getFlatMenuKeys(formatMenuPath(nextProps.menuData)),
+        ),
+      };
+    }
+    return null;
   }
 
   constructor(props) {
     super(props);
+
     this.fullPathMenuData = formatMenuPath(this.props.menuData);
     this.flatMenuKeys = getFlatMenuKeys(this.fullPathMenuData);
-  }
 
-  state = {
-    openKeys: getOpenKeys(this.props.pathname, this.flatMenuKeys),
-  }
-
-  componentDidUpdate = (prevProps) => {
-    if (this.props.pathname !== prevProps.pathname) {
-      this.setState({
-        openKeys: getOpenKeys(this.props.pathname, this.flatMenuKeys),
-      });
-    }
+    this.state = {
+      pathname: props.pathname,
+      openKeys: getOpenKeys(props.pathname, this.flatMenuKeys),
+    };
   }
 
   handleOpenChange = (openKeys) => {
