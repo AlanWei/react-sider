@@ -63,12 +63,14 @@ class Sider extends Component {
   constructor(props) {
     super(props);
 
-    this.fullPathMenuData = formatMenuPath(this.props.menuData);
+    const { menuData, pathname } = props;
+
+    this.fullPathMenuData = formatMenuPath(menuData);
     this.flatMenuKeys = getFlatMenuKeys(this.fullPathMenuData);
 
     this.state = {
-      pathname: props.pathname,
-      openKeys: getOpenKeys(props.pathname, this.flatMenuKeys),
+      pathname,
+      openKeys: getOpenKeys(pathname, this.flatMenuKeys),
     };
   }
 
@@ -84,12 +86,18 @@ class Sider extends Component {
         return (
           <SubMenu
             key={item.path}
-            title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}
+            title={
+              <span>
+                <Icon type={item.icon} />
+                <span>{item.name}</span>
+              </span>
+            }
           >
             {this.renderMenu(item.children)}
           </SubMenu>
         );
       }
+
       return (
         <Menu.Item key={item.path}>
           <Link to={item.path} href={item.path}>
@@ -101,33 +109,49 @@ class Sider extends Component {
     })
   )
 
-  renderSiderHeader = () => (
-    <Link to={this.props.appBaseUrl} href={this.props.appBaseUrl}>
-      <div className={`${this.props.prefixCls}-header`}>
-        <img
-          className={`${this.props.prefixCls}-logo`}
-          src={this.props.appLogo}
-          alt="logo"
-        />
-        <div className={`${this.props.prefixCls}-appName`}>
-          {this.props.appName}
-        </div>
-      </div>
-    </Link>
-  )
+  renderSiderHeader = () => {
+    const {
+      appBaseUrl,
+      prefixCls,
+      appLogo,
+      appName,
+    } = this.props;
 
-  renderSiderBody = () => (
-    <Menu
-      style={{ padding: '16px 0', width: '100%' }}
-      mode="inline"
-      theme="dark"
-      openKeys={this.state.openKeys}
-      selectedKeys={this.state.openKeys}
-      onOpenChange={this.handleOpenChange}
-    >
-      {this.renderMenu(this.fullPathMenuData)}
-    </Menu>
-  )
+    return (
+      <Link to={appBaseUrl} href={appBaseUrl}>
+        <div className={`${prefixCls}-header`}>
+          <img
+            className={`${prefixCls}-logo`}
+            src={appLogo}
+            alt="logo"
+          />
+          <div className={`${prefixCls}-appName`}>
+            {appName}
+          </div>
+        </div>
+      </Link>
+    );
+  }
+
+  renderSiderBody = () => {
+    const { prefixCls } = this.props;
+    const { openKeys } = this.state;
+
+    return (
+      <div className={`${prefixCls}-body`}>
+        <Menu
+          style={{ padding: '16px 0', width: '100%' }}
+          mode="inline"
+          theme="dark"
+          openKeys={openKeys}
+          selectedKeys={openKeys}
+          onOpenChange={this.handleOpenChange}
+        >
+          {this.renderMenu(this.fullPathMenuData)}
+        </Menu>
+      </div>
+    );
+  }
 
   render() {
     const {
@@ -146,9 +170,7 @@ class Sider extends Component {
     return (
       <div className={classes} style={styles}>
         {this.renderSiderHeader()}
-        <div className={`${prefixCls}-body`}>
-          {this.renderSiderBody()}
-        </div>
+        {this.renderSiderBody()}
       </div>
     );
   }
