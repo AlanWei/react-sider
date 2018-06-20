@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import memoize from "memoize-one";
 import map from 'lodash/map';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
@@ -42,36 +43,26 @@ const defaultProps = {
   pathname: '/',
 };
 
-const getOpenKeys = (pathname, flatMenuKeys) => (
-  getMeunMatchKeys(flatMenuKeys, urlToList(pathname))
-);
+const getFullPathMenuData = memoize(menuData => formatMenuPath(menuData));
+
+const getOpenKeys = memoize((pathname, menuData) => (getMeunMatchKeys(
+  getFlatMenuKeys(getFullPathMenuData(menuData)),
+  urlToList(pathname),
+)));
 
 class Sider extends Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.pathname !== prevState.pathname) {
+  static getDerivedStateFromProps(props, state) {
+    if (props.pathname !== state.prevPathname) {
       return {
-        pathname: nextProps.pathname,
-        openKeys: getOpenKeys(
-          nextProps.pathname,
-          getFlatMenuKeys(formatMenuPath(nextProps.menuData)),
-        ),
+        prevPathname: props.pathname,
+        openKeys: getOpenKeys(props.pathname, props.menuData),
       };
     }
     return null;
   }
 
-  constructor(props) {
-    super(props);
-
-    const { menuData, pathname } = props;
-
-    this.fullPathMenuData = formatMenuPath(menuData);
-    this.flatMenuKeys = getFlatMenuKeys(this.fullPathMenuData);
-
-    this.state = {
-      pathname,
-      openKeys: getOpenKeys(pathname, this.flatMenuKeys),
-    };
+  state = {
+    openKeys: getOpenKeys(this.props.pathname, this.props.menuData),
   }
 
   handleOpenChange = (openKeys) => {
@@ -134,7 +125,7 @@ class Sider extends Component {
   }
 
   renderSiderBody = () => {
-    const { prefixCls } = this.props;
+    const { prefixCls, menuData } = this.props;
     const { openKeys } = this.state;
 
     return (
@@ -147,7 +138,7 @@ class Sider extends Component {
           selectedKeys={openKeys}
           onOpenChange={this.handleOpenChange}
         >
-          {this.renderMenu(this.fullPathMenuData)}
+          {this.renderMenu(getFullPathMenuData(menuData))}
         </Menu>
       </div>
     );
