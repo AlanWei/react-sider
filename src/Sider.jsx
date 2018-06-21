@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import memoize from "memoize-one";
+import memoize from 'memoize-one';
 import map from 'lodash/map';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
@@ -43,26 +43,20 @@ const defaultProps = {
   pathname: '/',
 };
 
-const getFullPathMenuData = memoize(menuData => formatMenuPath(menuData));
-
-const getOpenKeys = memoize((pathname, menuData) => (getMeunMatchKeys(
-  getFlatMenuKeys(getFullPathMenuData(menuData)),
-  urlToList(pathname),
-)));
-
 class Sider extends Component {
-  static getDerivedStateFromProps(props, state) {
-    if (props.pathname !== state.prevPathname) {
-      return {
-        prevPathname: props.pathname,
-        openKeys: getOpenKeys(props.pathname, props.menuData),
-      };
-    }
-    return null;
-  }
+  constructor(props) {
+    super(props);
 
-  state = {
-    openKeys: getOpenKeys(this.props.pathname, this.props.menuData),
+    this.fullPathMenuData = memoize(menuData => formatMenuPath(menuData));
+    this.selectedKeys = memoize((pathname, fullPathMenu) => (
+      getMeunMatchKeys(getFlatMenuKeys(fullPathMenu), urlToList(pathname))
+    ));
+
+    const { pathname, menuData } = props;
+
+    this.state = {
+      openKeys: this.selectedKeys(pathname, this.fullPathMenuData(menuData)),
+    };
   }
 
   handleOpenChange = (openKeys) => {
@@ -125,7 +119,7 @@ class Sider extends Component {
   }
 
   renderSiderBody = () => {
-    const { prefixCls, menuData } = this.props;
+    const { prefixCls, pathname, menuData } = this.props;
     const { openKeys } = this.state;
 
     return (
@@ -135,10 +129,10 @@ class Sider extends Component {
           mode="inline"
           theme="dark"
           openKeys={openKeys}
-          selectedKeys={openKeys}
+          selectedKeys={this.selectedKeys(pathname, this.fullPathMenuData(menuData))}
           onOpenChange={this.handleOpenChange}
         >
-          {this.renderMenu(getFullPathMenuData(menuData))}
+          {this.renderMenu(this.fullPathMenuData(menuData))}
         </Menu>
       </div>
     );
