@@ -73,7 +73,7 @@ class Sider extends Component {
             key={item.path}
             title={
               <span>
-                <Icon type={item.icon} />
+                {item.icon && <Icon type={item.icon} />}
                 <span>{item.name}</span>
               </span>
             }
@@ -86,7 +86,7 @@ class Sider extends Component {
       return (
         <Menu.Item key={item.path}>
           <Link to={item.path} href={item.path}>
-            <Icon type={item.icon} />
+            {item.icon && <Icon type={item.icon} />}
             <span>{item.name}</span>
           </Link>
         </Menu.Item>
